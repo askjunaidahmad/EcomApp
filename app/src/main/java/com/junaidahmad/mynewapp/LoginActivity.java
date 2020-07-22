@@ -11,7 +11,9 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -20,6 +22,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.junaidahmad.mynewapp.Modal.Users;
+import com.junaidahmad.mynewapp.preValent.Prevalent;
+
+import io.paperdb.Paper;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -27,6 +32,10 @@ public class LoginActivity extends AppCompatActivity {
     private EditText InputPhoneNumber , InputPassword;
     private Button LoginButton;
     private ProgressDialog loadingBar;
+    private TextView AdminPanelLink , NotAdminPanelLink;
+
+    private com.rey.material.widget.CheckBox chkBoxRememberMe;
+
 
     private String parentDBName = "Users";
 
@@ -38,6 +47,11 @@ public class LoginActivity extends AppCompatActivity {
         LoginButton = findViewById(R.id.btn_login);
         InputPhoneNumber = findViewById(R.id.txt_login_phone_number);
         InputPassword = findViewById(R.id.txt_login_password);
+        chkBoxRememberMe = findViewById(R.id.chk_remember_me);
+        AdminPanelLink = findViewById(R.id.admin_panel);
+        NotAdminPanelLink = findViewById(R.id.not_admin_panel);
+
+        Paper.init(this);
 
         loadingBar = new ProgressDialog(this);
 
@@ -47,6 +61,27 @@ public class LoginActivity extends AppCompatActivity {
                 LoginUser();
             }
         });
+
+        AdminPanelLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LoginButton.setText("Admin Login");
+                AdminPanelLink.setVisibility(View.INVISIBLE);
+                NotAdminPanelLink.setVisibility(View.VISIBLE);
+                parentDBName = "Admins";
+
+            }
+        });
+        NotAdminPanelLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LoginButton.setText("Login");
+                AdminPanelLink.setVisibility(View.VISIBLE);
+                NotAdminPanelLink.setVisibility(View.INVISIBLE);
+                parentDBName = "Users";
+            }
+        });
+
 
     }
 
@@ -78,6 +113,12 @@ public class LoginActivity extends AppCompatActivity {
 
     private void AllowAccessToAccount(final String uPhoneNumber, final String uPassword)
     {
+        if (chkBoxRememberMe.isChecked())
+        {
+            Paper.book().write(Prevalent.UserPhoneKey,uPhoneNumber);
+            Paper.book().write(Prevalent.UserPassKey,uPassword);
+        }
+
         final DatabaseReference RootRef;
         RootRef = FirebaseDatabase.getInstance().getReference();
 
@@ -93,11 +134,22 @@ public class LoginActivity extends AppCompatActivity {
                     {
                         if(usersData.getPassword().equals(uPassword))
                         {
-                            Toast.makeText(LoginActivity.this,"Loggedin Successfully",Toast.LENGTH_LONG).show();
-                            loadingBar.dismiss();
+                           if(parentDBName.equals("Admins"))
+                           {
+                               Toast.makeText(LoginActivity.this,"Logged in Successfully",Toast.LENGTH_LONG).show();
+                               loadingBar.dismiss();
 
-                            Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
-                            startActivity(intent);
+                               Intent intent = new Intent(LoginActivity.this,AdminCategoryActivity.class);
+                               startActivity(intent);
+                           }
+                           else if (parentDBName.equals("Users"))
+                               {
+                                   Toast.makeText(LoginActivity.this,"Logged in Successfully",Toast.LENGTH_LONG).show();
+                                   loadingBar.dismiss();
+
+                                   Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+                                   startActivity(intent);
+                               }
 
                         }
                         else

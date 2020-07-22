@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login"
     tools:context=".LoginActivity">
 
 
@@ -127,6 +126,21 @@
         android:layout_marginEnd="20dp"
         android:layout_marginTop="20dp"
         android:layout_alignParentEnd="true"
+        >
+    </TextView>
+    <TextView
+        android:id="@+id/not_admin_panel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:layout_below="@id/btn_login"
+        android:text="I'm not admin"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentEnd="false"
+        android:visibility="invisible"
         >
     </TextView>
 
