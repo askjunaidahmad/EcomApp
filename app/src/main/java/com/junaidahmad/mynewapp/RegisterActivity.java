@@ -65,15 +65,15 @@ public class RegisterActivity extends AppCompatActivity {
 
         if(TextUtils.isEmpty(uname))
         {
-
+            Toast.makeText(RegisterActivity.this,"Please Write your Name",Toast.LENGTH_SHORT).show();
         }
         else if(TextUtils.isEmpty(uPhoneNumber))
         {
-
+            Toast.makeText(RegisterActivity.this,"Please Write your Phone Number",Toast.LENGTH_SHORT).show();
         }
         else if(TextUtils.isEmpty(uPassword))
         {
-
+            Toast.makeText(RegisterActivity.this,"Please Write your Password",Toast.LENGTH_SHORT).show();
         }
         else
             {
