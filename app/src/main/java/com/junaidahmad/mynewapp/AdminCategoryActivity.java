@@ -19,12 +19,43 @@ public class AdminCategoryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_category);
 
         tShirts = findViewById(R.id.t_shirts);
+        sportsTShirts = findViewById(R.id.sports_t_shirts);
+        femaleDresses = findViewById(R.id.female_dresses);
+        Sweaters = findViewById(R.id.sweather);
 
         tShirts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AdminCategoryActivity.this,AdminAddNewProductActivity.class);
                 intent.putExtra("category","tShirts");
+                startActivity(intent);
+            }
+        });
+
+
+        sportsTShirts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AdminCategoryActivity.this,AdminAddNewProductActivity.class);
+                intent.putExtra("category","sportsTShirts");
+                startActivity(intent);
+            }
+        });
+
+        femaleDresses.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AdminCategoryActivity.this,AdminAddNewProductActivity.class);
+                intent.putExtra("category","femaleDresses");
+                startActivity(intent);
+            }
+        });
+
+        Sweaters.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AdminCategoryActivity.this,AdminAddNewProductActivity.class);
+                intent.putExtra("category","Sweaters");
                 startActivity(intent);
             }
         });

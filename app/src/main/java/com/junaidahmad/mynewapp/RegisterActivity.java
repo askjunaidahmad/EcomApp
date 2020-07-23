@@ -139,7 +139,8 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(RegisterActivity.this,  "Something Error - " + error ,Toast.LENGTH_SHORT).show();
+                loadingBar.dismiss();
             }
         });
 
