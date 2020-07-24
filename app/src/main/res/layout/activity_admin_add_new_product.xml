@@ -6,16 +6,87 @@
     android:layout_height="match_parent"
     tools:context=".AdminAddNewProductActivity">
 
-    <TextView
-        android:id="@+id/simple_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+    <ImageView
+        android:id="@+id/select_product_image"
+        android:layout_width="350dp"
+        android:layout_height="200dp"
         android:layout_centerHorizontal="true"
-        android:text="Wow Admin Logged in"
-        android:textSize="25sp"
-
+        android:layout_marginTop="10dp"
+        android:cropToPadding="false"
+        android:scaleType="centerCrop"
+        android:src="@drawable/select_product_image"
         >
-    </TextView>
+    </ImageView>
+
+    <EditText
+        android:id="@+id/txt_product_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/select_product_image"
+        android:hint="Product Name"
+        android:textSize="20sp"
+        android:background="@drawable/input_design"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginTop="15dp"
+        android:padding="15dp"
+        android:textAllCaps="false"
+        android:inputType="textMultiLine"
+        >
+    </EditText>
+
+    <EditText
+        android:id="@+id/txt_product_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_product_name"
+        android:hint="Product Desc..."
+        android:textSize="20sp"
+        android:background="@drawable/input_design"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginTop="5dp"
+        android:padding="15dp"
+        android:textAllCaps="false"
+        android:inputType="textMultiLine"
+        >
+    </EditText>
+
+    <EditText
+        android:id="@+id/txt_product_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_product_desc"
+        android:hint="Product Price"
+        android:textSize="20sp"
+        android:background="@drawable/input_design"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginTop="5dp"
+        android:padding="15dp"
+        android:textAllCaps="false"
+        android:inputType="number"
+        >
+    </EditText>
+
+    <Button
+        android:id="@+id/btn_save_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:textAllCaps="false"
+        android:layout_below="@+id/txt_product_price"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="45dp"
+        android:layout_marginLeft="45dp"
+        android:padding="10dp"
+        android:background="@drawable/button"
+        android:textColor="@android:color/white"
+        android:textSize="25sp"
+        >
+    </Button>
+
+
+
 
 </RelativeLayout>
